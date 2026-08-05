@@ -202,6 +202,10 @@ section > h2 {
   display: flex; flex-wrap: wrap; gap: 0.4rem 1.5rem;
 }
 
+/* Screen hides it, print keeps it: the number belongs on an attached CV,
+   not on a public indexable page. */
+.print-only { display: none; }
+
 /* ---------- print: this is a CV, it has to make a clean PDF ---------- */
 
 @media print {
@@ -235,4 +239,5 @@ section > h2 {
   .job-head h3, .sys h3 { font-size: 10.5pt; }
   .sys .nums, .sys .what { font-size: 7.6pt; }
   .no-print { display: none !important; }
+  .print-only { display: inline !important; }
 }
