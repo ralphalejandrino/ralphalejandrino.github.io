@@ -1,0 +1,659 @@
+<title>Ralph Alejandrino — Engineering Case Notes</title>
+
+<style>
+  :root {
+    --ground: #F2F5F7;
+    --surface: #FFFFFF;
+    --ink: #14202A;
+    --muted: #5B6B79;
+    --faint: #8695A3;
+    --rule: #D9E1E7;
+    --rule-soft: #E7EDF1;
+    --accent: #0F6E78;
+    --accent-soft: #E2F0F1;
+    --signal: #9A6510;
+    --signal-soft: #F5EBDA;
+
+    --font-display: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+    --font-body: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, "SF Mono", "Cascadia Mono", Menlo, Consolas, "Liberation Mono", monospace;
+
+    --measure: 68ch;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ground: #0E151B;
+      --surface: #151E26;
+      --ink: #E3EAF0;
+      --muted: #93A3B1;
+      --faint: #6E7F8D;
+      --rule: #26333D;
+      --rule-soft: #1E2A33;
+      --accent: #45AEB8;
+      --accent-soft: #123034;
+      --signal: #D6A153;
+      --signal-soft: #2C2417;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground: #0E151B;
+    --surface: #151E26;
+    --ink: #E3EAF0;
+    --muted: #93A3B1;
+    --faint: #6E7F8D;
+    --rule: #26333D;
+    --rule-soft: #1E2A33;
+    --accent: #45AEB8;
+    --accent-soft: #123034;
+    --signal: #D6A153;
+    --signal-soft: #2C2417;
+  }
+
+  :root[data-theme="light"] {
+    --ground: #F2F5F7;
+    --surface: #FFFFFF;
+    --ink: #14202A;
+    --muted: #5B6B79;
+    --faint: #8695A3;
+    --rule: #D9E1E7;
+    --rule-soft: #E7EDF1;
+    --accent: #0F6E78;
+    --accent-soft: #E2F0F1;
+    --signal: #9A6510;
+    --signal-soft: #F5EBDA;
+  }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 46rem;
+    margin: 0 auto;
+    padding: clamp(2rem, 6vw, 4.5rem) clamp(1.15rem, 5vw, 2rem) 5rem;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(2.75rem, 6vw, 4rem);
+  }
+
+  a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* ---- masthead ---- */
+
+  .masthead { display: flex; flex-direction: column; gap: 1.15rem; }
+
+  .masthead h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.1rem, 6.5vw, 3rem);
+    line-height: 1.06;
+    letter-spacing: -0.015em;
+    font-weight: 600;
+    text-wrap: balance;
+  }
+
+  .standfirst {
+    font-family: var(--font-display);
+    font-size: clamp(1.08rem, 2.6vw, 1.28rem);
+    line-height: 1.5;
+    color: var(--muted);
+    max-width: var(--measure);
+    text-wrap: pretty;
+  }
+
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.755rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--faint);
+    padding-top: 0.35rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  /* ---- section headings ---- */
+
+  .sec { display: flex; flex-direction: column; gap: 1.5rem; }
+
+  .sec-head { display: flex; flex-direction: column; gap: 0.6rem; }
+
+  .sec-head h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 3.4vw, 1.7rem);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+
+  .sec-head p { color: var(--muted); max-width: var(--measure); text-wrap: pretty; }
+
+  /* ---- systems ---- */
+
+  .systems { display: grid; gap: 1rem; }
+  @media (min-width: 40rem) { .systems { grid-template-columns: 1fr 1fr; } }
+
+  .system {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 1.35rem 1.4rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .system h3 {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .system p { font-size: 0.94rem; color: var(--muted); }
+
+  .figures {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    margin-top: auto;
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--rule-soft);
+  }
+
+  .fig {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.775rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .fig span:first-child { color: var(--faint); letter-spacing: 0.02em; }
+  .fig span:last-child { color: var(--ink); font-weight: 600; }
+
+  /* ---- cases ---- */
+
+  .cases { display: flex; flex-direction: column; gap: 2.5rem; }
+
+  .case { display: flex; flex-direction: column; gap: 1rem; }
+
+  .case-label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: var(--signal);
+    background: var(--signal-soft);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    padding: 0.22rem 0.5rem;
+    align-self: flex-start;
+    font-weight: 600;
+  }
+
+  .case h3 {
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 3vw, 1.5rem);
+    font-weight: 600;
+    line-height: 1.24;
+    letter-spacing: -0.008em;
+    text-wrap: balance;
+  }
+
+  .rows { display: flex; flex-direction: column; gap: 0.9rem; }
+
+  .row { display: grid; gap: 0.25rem 1.5rem; }
+
+  @media (min-width: 44rem) {
+    .row { grid-template-columns: 8.5rem 1fr; }
+  }
+
+  .row dt {
+    font-family: var(--font-mono);
+    font-size: 0.705rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--faint);
+    padding-top: 0.32rem;
+  }
+
+  .row dd { max-width: var(--measure); text-wrap: pretty; }
+
+  .row dd.proof { color: var(--muted); }
+
+  code {
+    font-family: var(--font-mono);
+    font-size: 0.855em;
+    background: var(--accent-soft);
+    color: var(--ink);
+    padding: 0.08em 0.34em;
+    border-radius: 2px;
+    word-break: break-word;
+  }
+
+  .pull {
+    border-left: 2px solid var(--accent);
+    padding: 0.15rem 0 0.15rem 1rem;
+    margin-left: 0.1rem;
+    font-family: var(--font-display);
+    font-size: 1.02rem;
+    line-height: 1.5;
+    color: var(--ink);
+    max-width: var(--measure);
+    text-wrap: pretty;
+  }
+
+  /* ---- practice ---- */
+
+  .practice { display: flex; flex-direction: column; gap: 0.9rem; }
+
+  .practice .item {
+    display: grid;
+    gap: 0.2rem 1.5rem;
+    padding-bottom: 0.9rem;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+
+  .practice .item:last-child { border-bottom: 0; padding-bottom: 0; }
+
+  @media (min-width: 44rem) {
+    .practice .item { grid-template-columns: 12rem 1fr; }
+  }
+
+  .practice dt { font-weight: 650; font-size: 0.955rem; }
+  .practice dd { color: var(--muted); font-size: 0.955rem; max-width: var(--measure); text-wrap: pretty; }
+
+  /* ---- footer ---- */
+
+  .foot {
+    border-top: 1px solid var(--rule);
+    padding-top: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    font-size: 0.86rem;
+    color: var(--faint);
+    max-width: var(--measure);
+    text-wrap: pretty;
+  }
+
+  .foot a { color: var(--muted); }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <h1>Engineering case notes</h1>
+    <p class="standfirst">
+      Six times software reported success and was wrong — and how each one was caught.
+      Drawn from systems I build and run in daily production for paying clients.
+    </p>
+    <div class="meta">
+      <span>Ralph Alejandrino</span>
+      <span>Manila · UTC+8</span>
+      <span><a href="mailto:r.miguel.aleja@gmail.com">r.miguel.aleja@gmail.com</a></span>
+    </div>
+  </header>
+
+  <section class="sec">
+    <div class="sec-head">
+      <h2>The systems these come from</h2>
+      <p>
+        Two products I designed, built, and operate end to end — including the deploys, the
+        incident response, and the conversations with the people using them.
+      </p>
+    </div>
+
+    <div class="systems">
+      <article class="system">
+        <h3>LOCUS</h3>
+        <p>
+          Multi-tenant CRM and delivery-tracking system for an LPG distribution business.
+          Django and PostgreSQL-family backend, shipped to the client as a frozen Windows
+          desktop binary. An LLM provider sits behind a one-method interface and parses
+          free-text customer messages into structured order lines.
+        </p>
+        <div class="figures">
+          <div class="fig"><span>Customer records</span><span>~2,800</span></div>
+          <div class="fig"><span>Message history</span><span>139,000</span></div>
+          <div class="fig"><span>Status</span><span>Daily production use</span></div>
+        </div>
+      </article>
+
+      <article class="system">
+        <h3>TarsierPOS</h3>
+        <p>
+          Point-of-sale, inventory and cost-of-goods system running on a café's register.
+          Offline-capable PWA with a versioned service worker, deployed to the live machine
+          on a watched, snapshot-first process with a rollback commit recorded every time.
+        </p>
+        <div class="figures">
+          <div class="fig"><span>Automated tests</span><span>~2,000</span></div>
+          <div class="fig"><span>Deploy model</span><span>Snapshot + rollback</span></div>
+          <div class="fig"><span>Status</span><span>Live on client hardware</span></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head">
+      <h2>Cases</h2>
+      <p>
+        Each is a real production incident. The label names the failure class, because the
+        useful part is rarely the fix — it's what made the bug survive the checks that should
+        have caught it.
+      </p>
+    </div>
+
+    <div class="cases">
+
+      <article class="case">
+        <span class="case-label">Idempotency</span>
+        <h3>A retry turned one customer order into three</h3>
+        <dl class="rows">
+          <div class="row">
+            <dt>Symptom</dt>
+            <dd>
+              One real order sat in the dispatch queue three times. Nobody had done anything
+              twice. The business could have sent three deliveries and billed for one.
+            </dd>
+          </div>
+          <div class="row">
+            <dt>The chain</dt>
+            <dd>
+              A launch routine copied a 53&nbsp;MB SQLite file inline while the server was already
+              accepting traffic. A concurrent write hit <code>database is locked</code>. The intake
+              webhook returned 500. The upstream SMS gateway did what gateways do and retried —
+              and the retry landed as a brand-new row, because the endpoint had no idempotency key.
+            </dd>
+          </div>
+          <div class="row">
+            <dt>Fix</dt>
+            <dd>
+              Persist the gateway's own receipt timestamp as an external key and let a unique
+              database constraint arbitrate, rather than an application-level "have I seen this?"
+              check that races under exactly the conditions that caused the bug. Separately, moved
+              the database to WAL so a backup stops blocking writers at all.
+            </dd>
+          </div>
+          <div class="row">
+            <dt>Proven by</dt>
+            <dd class="proof">
+              Removing the constraint and confirming the test went red — a fix that can't be made
+              to fail hasn't been tested. Negative control: a customer genuinely ordering the same
+              thing twice must still produce two records.
+            </dd>
+          </div>
+        </dl>
+      </article>
+
+      <article class="case">
+        <span class="case-label">Silent data loss</span>
+        <h3>An import reported success and dropped 1,604 rows</h3>
+        <dl class="rows">
+          <div class="row">
+            <dt>Symptom</dt>
+            <dd>
+              None. A 265,000-row message archive imported cleanly, no errors, no warnings. The
+              absence of a symptom is why it's here.
+            </dd>
+          </div>
+          <div class="row">
+            <dt>What hid it</dt>
+            <dd>
+              The parser matched one row shape and quietly skipped another — group messages, which
+              included real customer orders. Found by ignoring the importer's own reporting and
+              counting raw rows in the source file instead: 263,857 matched against 265,462 present.
+            </dd>
+          </div>
+          <div class="row">
+            <dt>Also found</dt>
+            <dd>
+              27,264 dates silently failed to parse because one month was abbreviated with four
+              letters where the format string expected three. Recovered data was material — a single
+              year's records went from 155,546 to 181,371.
+            </dd>
+          </div>
+          <div class="row">
+            <dt>Rule since</dt>
+            <dd class="proof">
+              A clean exit is not verification. Reconcile against an independent count taken from
+              the source, not from the tool doing the work.
+            </dd>
+          </div>
+        </dl>
+      </article>
+
+      <article class="case">
+        <span class="case-label">False negative</span>
+        <h3>The fix that would have looked correct and done nothing</h3>
+        <dl class="rows">
+          <div class="row">
+            <dt>Symptom</dt>
+            <dd>
+              A Spanish-derived character rendered wrong throughout imported customer data —
+              in names, and in street addresses.
+            </dd>
+          </div>
+          <div class="row">
+            <dt>The trap</dt>
+            <dd>
+              The obvious fix is Unicode normalization. But the source contained a combining
+              <em>diaeresis</em> where a tilde belonged, and Unicode has no precomposed form for that
+              letter-plus-diaeresis pair — so normalization is a silent no-op. The fix would have
+              passed review, shipped, and changed nothing.
+            </dd>
+          </div>
+          <div class="row">
+            <dt>Fix</dt>
+            <dd>
+              Swap the combining mark first, then normalize, scoped to the single affected letter so
+              legitimate umlauts elsewhere in the data survive. A test now guards the no-op case
+              specifically, so nobody re-introduces the plausible version.
+            </dd>
+          </div>
+          <div class="row">
+            <dt>Scope correction</dt>
+            <dd class="proof">
+              The reported scope was ten fields. It was twenty — and nine of them were street
+              addresses, which is what a courier actually reads on the way to a delivery. Worth more
+              than the names.
+            </dd>
+          </div>
+        </dl>
+      </article>
+
+      <article class="case">
+        <span class="case-label">Silent data loss</span>
+        <h3>Seven files vanished while the tool reported success</h3>
+        <dl class="rows">
+          <div class="row">
+            <dt>Symptom</dt>
+            <dd>
+              None again. An 81&nbsp;GB personal archive migrated between machines. Exit code 0.
+              File counts matched on both sides.
+            </dd>
+          </div>
+          <div class="row">
+            <dt>What hid it</dt>
+            <dd>
+              The destination filesystem was case-insensitive and the source was not. Files differing
+              only in capitalization collapsed into each other on arrival, and the counts still
+              matched because the collisions happened before anything was counted.
+            </dd>
+          </div>
+          <div class="row">
+            <dt>Caught by</dt>
+            <dd>
+              Checksumming both sides instead of trusting the transfer. Seven videos, roughly
+              7.7&nbsp;GB, were already gone — and would have stayed gone, since the next step was to
+              reformat the source.
+            </dd>
+          </div>
+          <div class="row">
+            <dt>Rule since</dt>
+            <dd class="proof">
+              Verify by hash, never by count and never by exit code. Both of those agreed with each
+              other and were both wrong.
+            </dd>
+          </div>
+        </dl>
+      </article>
+
+      <article class="case">
+        <span class="case-label">Unverified handoff</span>
+        <h3>An AI-generated audit that was fabricated end to end</h3>
+        <dl class="rows">
+          <div class="row">
+            <dt>Symptom</dt>
+            <dd>
+              A session summary written by an AI assistant reported that only eight database
+              migrations existed, that one was destructive and unapplied, that a model field was
+              missing, and that the framework was two major versions behind.
+            </dd>
+          </div>
+          <div class="row">
+            <dt>Reality</dt>
+            <dd>
+              Twenty-two migrations, all applied. The field present. The framework current. Every
+              specific claim was confidently stated and wrong.
+            </dd>
+          </div>
+          <div class="row">
+            <dt>Cost</dt>
+            <dd>
+              Five tickets deferred for no reason, and a full working session spent proving nothing
+              was broken.
+            </dd>
+          </div>
+          <div class="row">
+            <dt>Response</dt>
+            <dd class="proof">
+              A written standing rule: any handoff's claims about the state of the codebase are
+              untrusted until re-checked against the repository — migrations listed, fields grepped,
+              versions printed. Roughly one minute of checking against a session of phantom work.
+              This is why I run AI-assisted and still verify before I act.
+            </dd>
+          </div>
+        </dl>
+      </article>
+
+      <article class="case">
+        <span class="case-label">Premature diagnosis</span>
+        <h3>A plausible lead shipped the wrong fix to a live client machine</h3>
+        <dl class="rows">
+          <div class="row">
+            <dt>Symptom</dt>
+            <dd>
+              A client reported the register crashing during service, and sent a screen recording
+              with the report.
+            </dd>
+          </div>
+          <div class="row">
+            <dt>What went wrong</dt>
+            <dd>
+              A plausible explanation presented itself early and fit the description. I shipped
+              against it. It wasn't the fault — decoding the recording frame by frame afterwards
+              showed a different failure entirely, and the original one was still there.
+            </dd>
+          </div>
+          <div class="row">
+            <dt>Rule since</dt>
+            <dd class="proof">
+              When a report ships evidence, decode all of it and reproduce the actual failure before
+              writing a line of the fix. A hypothesis that explains the symptom is not a verified
+              hypothesis — plausibility is the thing that makes a wrong diagnosis expensive.
+            </dd>
+          </div>
+        </dl>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head">
+      <h2>How I work</h2>
+      <p>
+        I use AI assistants throughout and treat their output as draft work. The practices below
+        are what make that safe rather than fast-and-sorry.
+      </p>
+    </div>
+
+    <dl class="practice">
+      <div class="item">
+        <dt>Prove the test can fail</dt>
+        <dd>
+          After a fix passes, I remove the fix and confirm the test goes red. A green test that was
+          never shown to fail is decoration.
+        </dd>
+      </div>
+      <div class="item">
+        <dt>Run a negative control</dt>
+        <dd>
+          Every change gets a case that must <em>not</em> change. Deduplication is only correct if a
+          genuine repeat still gets through.
+        </dd>
+      </div>
+      <div class="item">
+        <dt>Run a positive control</dt>
+        <dd>
+          When a query returns nothing, I prove the query works before I conclude the data is
+          absent. An empty result and a broken filter look identical.
+        </dd>
+      </div>
+      <div class="item">
+        <dt>Verify claims against the code</dt>
+        <dd>
+          Line numbers, field names, migration state, versions — checked in the repository before
+          they shape any decision. Notes and summaries are untrusted on matters of fact.
+        </dd>
+      </div>
+      <div class="item">
+        <dt>Small, reviewable diffs</dt>
+        <dd>
+          Scoped commits with the reasoning written down, so a reviewer can follow the argument
+          rather than reverse-engineer it.
+        </dd>
+      </div>
+      <div class="item">
+        <dt>Deploy with a way back</dt>
+        <dd>
+          Snapshot first, record the rollback target before starting, verify the live artifacts
+          independently afterwards rather than trusting the deploy script's own report.
+        </dd>
+      </div>
+    </dl>
+  </section>
+
+  <footer class="foot">
+    <p>
+      Client names, customer data, and business specifics are deliberately omitted. Figures are
+      from production systems and are accurate as recorded at the time of each incident.
+    </p>
+    <p>
+      Ralph Alejandrino · Manila, UTC+8 ·
+      <a href="mailto:r.miguel.aleja@gmail.com">r.miguel.aleja@gmail.com</a>
+    </p>
+  </footer>
+
+</div>
