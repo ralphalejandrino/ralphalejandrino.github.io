@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ralph Alejandrino · Engineering Case Notes</title>
-<meta name="description" content="Six production incidents where the tooling reported success and was wrong, and how each one was caught.">
+<meta name="description" content="Five production incidents where the tooling reported success and was wrong, and how each one was caught.">
 <meta name="color-scheme" content="light dark">
 
 <meta property="og:title" content="Ralph Alejandrino · Engineering Case Notes">
-<meta property="og:description" content="Six production incidents where the tooling reported success and was wrong, and how each one was caught.">
+<meta property="og:description" content="Five production incidents where the tooling reported success and was wrong, and how each one was caught.">
 <meta property="og:type" content="website">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -323,7 +323,7 @@
     <p class="byline">Ralph Alejandrino</p>
     <h1>The tooling said it worked.</h1>
     <p class="lede">
-      Six times a system I run reported success and was wrong. Each one is a real production
+      Five times a system I run reported success and was wrong. Each one is a real production
       incident, what hid it, and the check that caught it.
     </p>
     <p class="contact">
@@ -366,17 +366,12 @@
           <td class="actual">0 characters changed</td>
         </tr>
         <tr>
-          <td><a href="#c4">Seven files that vanished</a></td>
-          <td class="claimed">exit 0, counts match</td>
-          <td class="actual">7 files gone, 7.7 GB</td>
-        </tr>
-        <tr>
-          <td><a href="#c5">A fabricated audit</a></td>
+          <td><a href="#c4">A fabricated audit</a></td>
           <td class="claimed">8 migrations, 1 unapplied</td>
           <td class="actual">22 migrations, all applied</td>
         </tr>
         <tr>
-          <td><a href="#c6">A confident wrong diagnosis</a></td>
+          <td><a href="#c5">A confident wrong diagnosis</a></td>
           <td class="claimed">root cause found</td>
           <td class="actual">wrong subsystem, still broken</td>
         </tr>
@@ -521,42 +516,6 @@
     <article class="case" id="c4">
       <div class="case-head">
         <span class="case-n">04</span>
-        <h3>Seven files vanished while the tool reported success
-          <span class="class">Silent partial failure</span>
-        </h3>
-      </div>
-      <div class="case-body">
-        <p>
-          An 81 GB personal archive moved between machines. Exit code 0. File counts matched on
-          both sides. Seven videos were already gone.
-        </p>
-        <div class="versus">
-          <div class="said">
-            <span class="k">transfer reported</span>
-            <span class="v">exit 0, counts identical</span>
-          </div>
-          <div class="was">
-            <span class="k">checksum comparison</span>
-            <span class="v">7 files missing, 7.7 GB</span>
-          </div>
-        </div>
-        <p>
-          The destination filesystem was case-insensitive and the source was not. Files differing
-          only in capitalisation collapsed into each other on arrival, and the counts still agreed
-          because the collision happened before anything was counted. Both of the checks I had
-          agreed with each other, and both were wrong.
-        </p>
-        <p class="rule-out">
-          Caught by checksumming both sides rather than trusting the transfer. The next step in
-          that job was to reformat the source, so this was the last moment it was recoverable.
-          Verify by hash, never by count, never by exit code.
-        </p>
-      </div>
-    </article>
-
-    <article class="case" id="c5">
-      <div class="case-head">
-        <span class="case-n">05</span>
         <h3>An AI-generated audit that was fabricated end to end
           <span class="class">Unverified handoff</span>
         </h3>
@@ -589,9 +548,9 @@
       </div>
     </article>
 
-    <article class="case" id="c6">
+    <article class="case" id="c5">
       <div class="case-head">
-        <span class="case-n">06</span>
+        <span class="case-n">05</span>
         <h3>A plausible lead shipped the wrong fix to a live machine
           <span class="class">Premature diagnosis</span>
         </h3>
