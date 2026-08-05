@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ralph Miguel D. Alejandrino · Software Engineer</title>
+<meta name="description" content="Software engineer building and operating production systems in Python and Django for small businesses.">
+<meta name="color-scheme" content="light dark">
+<meta property="og:title" content="Ralph Miguel D. Alejandrino · Software Engineer">
+<meta property="og:description" content="Software engineer building and operating production systems in Python and Django for small businesses.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Martian+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/cv.css">
+</head>
+<body>
+<div class="sheet">
+
+  <header class="top">
+    <h1>Ralph Miguel D. Alejandrino</h1>
+    <p class="role">Software Engineer · Python, Django</p>
+    <p class="reach">
+      <span>Manila, UTC+8</span>
+      <span>+63 962 076 8627</span>
+      <a href="mailto:ralphmiguelalejandrino@gmail.com">ralphmiguelalejandrino@gmail.com</a>
+      <a href="https://github.com/ralphalejandrino">github.com/ralphalejandrino</a>
+    </p>
+  </header>
+
+  <p class="summary">
+    I build and operate production software for small businesses, and I am usually the one who
+    deploys it, watches it break, and fixes it. Currently I run a multi-tenant CRM in daily use
+    across 2,800 customer records, and a point-of-sale system live on a client's register behind a
+    2,000-test suite. Before writing software for distribution and retail operations, I managed
+    one. I work AI-assisted and treat generated output as draft work: verified against the code,
+    proven with tests, shipped in small reviewable pieces.
+  </p>
+
+  <section>
+    <h2>Systems in production</h2>
+    <div class="systems">
+
+      <article class="sys">
+        <h3>LOCUS</h3>
+        <p class="what">Multi-tenant CRM and delivery tracking</p>
+        <p>
+          Django backend delivered to the client as a frozen Windows desktop binary, so it runs
+          unattended on their own machine. A language model sits behind a one-method provider
+          interface and turns free-text customer messages into structured order lines, with
+          failover between providers.
+        </p>
+        <p class="nums">
+          <b>2,800</b> customer records · <b>139,000</b> messages<br>
+          In daily use by the business it was built for
+        </p>
+      </article>
+
+      <article class="sys">
+        <h3>TarsierPOS</h3>
+        <p class="what">Point of sale, inventory and cost of goods</p>
+        <p>
+          Offline-capable progressive web app running on the register a café takes money with.
+          Versioned service worker, recipe-level ingredient depletion, and a deploy process that
+          snapshots the database and records a rollback commit before every push.
+        </p>
+        <p class="nums">
+          <b>2,000</b> automated tests · <b>0</b> unrecorded deploys<br>
+          Live on client hardware
+        </p>
+      </article>
+
+    </div>
+  </section>
+
+  <section>
+    <h2>Experience</h2>
+    <div class="roles">
+
+      <article class="job">
+        <div class="job-head">
+          <h3>Software Engineer, Co-founder</h3>
+          <span class="when">2024 – Present</span>
+        </div>
+        <p class="org">Tarsier Technologies · Self-directed, with paying clients</p>
+        <ul>
+          <li>Designed, built and shipped <b>two production systems end to end</b>: a multi-tenant CRM with delivery tracking, and a point-of-sale with inventory and cost-of-goods reporting. Both are in daily use by paying clients.</li>
+          <li>Integrated a <b>language model into live order intake</b> behind a swappable provider interface, parsing real customer messages into structured orders, with API failover and a settings-editable prompt so business rules change without a rebuild.</li>
+          <li>Own the full delivery path: migrations, packaging a Django app into a <b>frozen Windows binary</b>, hash-verified releases, snapshot-first deploys with a recorded rollback target, and independent verification of the live artifacts over SSH.</li>
+          <li>Run and diagnose the systems in production. Traced duplicate customer orders to a database lock during a launch-time backup, and fixed it with an idempotency key arbitrated by a database constraint.</li>
+          <li>Built the supporting infrastructure: private mesh networking between client sites, unattended always-on hosting proven across reboot and crash, and a provisioning process for putting new machines on the network.</li>
+        </ul>
+      </article>
+
+      <article class="job">
+        <div class="job-head">
+          <h3>Branch Manager</h3>
+          <span class="when">2023 – 2026</span>
+        </div>
+        <p class="org">PryceGas · Baguio City Branch</p>
+        <ul>
+          <li>Ran full branch operations: staff coordination, daily workflow, and performance monitoring for an LPG distribution business.</li>
+          <li>Managed inventory of LPG products and supplies, tracking stock levels and coordinating replenishment to reduce shortages.</li>
+          <li>Processed and deposited payments for every delivery haul to the plant, maintaining financial records with zero discrepancies.</li>
+          <li>Handled customer communications, complaints and service coordination, and prepared operational reporting to company standards.</li>
+          <li><b>This is the domain LOCUS was built for.</b> Having dispatched the deliveries and reconciled the cash myself is why the software matches how the work is actually done.</li>
+        </ul>
+      </article>
+
+      <article class="job">
+        <div class="job-head">
+          <h3>Operations Supervisor</h3>
+          <span class="when">2020 – 2023</span>
+        </div>
+        <p class="org">The Baker's Warehouse</p>
+        <ul>
+          <li>Streamlined office workflows and reorganised processes to improve team efficiency.</li>
+          <li>Maintained accurate business records through consistent data entry, documentation and file auditing.</li>
+          <li>Managed customer transactions and end-of-shift cash drawer balancing with zero discrepancies.</li>
+          <li>Handled phone-based customer enquiries and coordinated with the delivery team for accurate, on-time fulfilment.</li>
+        </ul>
+      </article>
+
+    </div>
+  </section>
+
+  <section>
+    <h2>Technical</h2>
+    <dl class="skills">
+      <dt>Languages</dt>
+      <dd>Python, JavaScript, SQL, HTML and CSS</dd>
+
+      <dt>Backend</dt>
+      <dd>Django, Flask, REST APIs, SQLite and PostgreSQL, schema migrations, multi-tenant data scoping</dd>
+
+      <dt>Frontend</dt>
+      <dd>Progressive web apps, service workers, offline-first behaviour, server-rendered templates, vanilla JavaScript</dd>
+
+      <dt>Applied AI</dt>
+      <dd>LLM provider integration and failover, prompt and parsing pipelines with structured output contracts, self-hosted local models on Linux</dd>
+
+      <dt>Delivery</dt>
+      <dd>Git, packaging Python applications as Windows binaries, hash-verified releases, snapshot and rollback deploys, Linux administration, private mesh networking</dd>
+
+      <dt>Practices</dt>
+      <dd>Automated testing at scale, proving a test can fail before trusting it, negative and positive controls, small reviewable diffs, AI-assisted development with verification</dd>
+    </dl>
+  </section>
+
+  <section>
+    <h2>Education</h2>
+    <div class="edu">
+      <div>
+        <h3>Mapua University</h3>
+        <span class="when">2022 – 2026</span>
+        <p>BS Computer Science</p>
+      </div>
+      <div>
+        <h3>Ateneo de Manila University</h3>
+        <span class="when">2016 – 2022</span>
+      </div>
+    </div>
+  </section>
+
+  <aside class="pointer">
+    <strong>Engineering case notes</strong>
+    <p>
+      Six production incidents where the tooling reported success and was wrong, with what hid each
+      one and the check that caught it:
+      <a href="https://ralphalejandrino.github.io/">ralphalejandrino.github.io</a>
+    </p>
+  </aside>
+
+  <footer class="foot">
+    <span>Ralph Miguel D. Alejandrino</span>
+    <span>Manila, UTC+8</span>
+    <a href="mailto:ralphmiguelalejandrino@gmail.com">ralphmiguelalejandrino@gmail.com</a>
+  </footer>
+
+</div>
+</body>
+</html>

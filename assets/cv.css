@@ -1,0 +1,238 @@
+/* Shared design system for the CV pages.
+   Same tokens as the case-notes page so the site reads as one thing. */
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body, h1, h2, h3, h4, p, ul, ol, li, dl, dd, dt { margin: 0; padding: 0; }
+ul, ol { list-style: none; }
+
+:root {
+  --bg:          oklch(0.985 0.002 250);
+  --surface:     oklch(1 0 0);
+  --ink:         oklch(0.22 0.021 252);
+  --body:        oklch(0.415 0.019 252);
+  --muted:       oklch(0.545 0.016 252);
+  --rule:        oklch(0.905 0.008 252);
+  --rule-strong: oklch(0.82 0.012 252);
+  --signal:      oklch(0.505 0.185 256);
+  --signal-ink:  oklch(0.42 0.17 256);
+  --signal-weak: oklch(0.955 0.028 256);
+
+  --f-sans: "Archivo", ui-sans-serif, system-ui, "Segoe UI", Roboto, sans-serif;
+  --f-mono: "Martian Mono", ui-monospace, "Cascadia Mono", Menlo, Consolas, monospace;
+
+  --step--1: clamp(0.78rem, 0.76rem + 0.10vw, 0.84rem);
+  --step-0:  clamp(0.95rem, 0.93rem + 0.12vw, 1.02rem);
+  --step-1:  clamp(1.15rem, 1.09rem + 0.28vw, 1.32rem);
+  --step-2:  clamp(1.4rem, 1.28rem + 0.58vw, 1.72rem);
+  --step-3:  clamp(1.85rem, 1.55rem + 1.45vw, 2.7rem);
+
+  --gutter: clamp(1.15rem, 4vw, 2.5rem);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:          oklch(0.188 0.017 255);
+    --surface:     oklch(0.232 0.019 255);
+    --ink:         oklch(0.955 0.006 255);
+    --body:        oklch(0.805 0.012 255);
+    --muted:       oklch(0.655 0.015 255);
+    --rule:        oklch(0.318 0.019 255);
+    --rule-strong: oklch(0.40 0.022 255);
+    --signal:      oklch(0.755 0.145 255);
+    --signal-ink:  oklch(0.80 0.14 255);
+    --signal-weak: oklch(0.285 0.055 255);
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg:          oklch(0.188 0.017 255);
+  --surface:     oklch(0.232 0.019 255);
+  --ink:         oklch(0.955 0.006 255);
+  --body:        oklch(0.805 0.012 255);
+  --muted:       oklch(0.655 0.015 255);
+  --rule:        oklch(0.318 0.019 255);
+  --rule-strong: oklch(0.40 0.022 255);
+  --signal:      oklch(0.755 0.145 255);
+  --signal-ink:  oklch(0.80 0.14 255);
+  --signal-weak: oklch(0.285 0.055 255);
+}
+
+:root[data-theme="light"] {
+  --bg:          oklch(0.985 0.002 250);
+  --surface:     oklch(1 0 0);
+  --ink:         oklch(0.22 0.021 252);
+  --body:        oklch(0.415 0.019 252);
+  --muted:       oklch(0.545 0.016 252);
+  --rule:        oklch(0.905 0.008 252);
+  --rule-strong: oklch(0.82 0.012 252);
+  --signal:      oklch(0.505 0.185 256);
+  --signal-ink:  oklch(0.42 0.17 256);
+  --signal-weak: oklch(0.955 0.028 256);
+}
+
+body {
+  background: var(--bg);
+  color: var(--body);
+  font-family: var(--f-sans);
+  font-size: var(--step-0);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+.sheet {
+  max-width: 52rem;
+  margin-inline: auto;
+  padding: clamp(2.25rem, 6vw, 3.75rem) var(--gutter) 3.5rem;
+}
+
+a { color: var(--signal-ink); text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+a:hover { color: var(--ink); }
+a:focus-visible { outline: 2px solid var(--signal); outline-offset: 3px; border-radius: 1px; }
+
+h1, h2, h3, h4 { color: var(--ink); line-height: 1.16; letter-spacing: -0.02em; text-wrap: balance; }
+p { text-wrap: pretty; }
+
+/* ---------- masthead ---------- */
+
+.top { display: flex; flex-direction: column; gap: 0.55rem; padding-bottom: 1.4rem; border-bottom: 1px solid var(--rule-strong); }
+
+.top h1 { font-size: var(--step-3); font-weight: 700; letter-spacing: -0.035em; }
+
+.role {
+  font-family: var(--f-mono); font-size: var(--step--1); font-weight: 600;
+  color: var(--signal-ink); letter-spacing: 0.01em;
+}
+
+.reach {
+  display: flex; flex-wrap: wrap; gap: 0.3rem 1.35rem;
+  font-family: var(--f-mono); font-size: 0.72rem; color: var(--muted);
+  margin-top: 0.4rem;
+}
+
+.summary { margin-top: 1.4rem; max-width: 68ch; font-size: var(--step-0); }
+
+/* ---------- sections ---------- */
+
+section { margin-top: clamp(2rem, 5vw, 2.9rem); }
+
+section > h2 {
+  font-size: 0.74rem;
+  font-family: var(--f-mono);
+  font-weight: 600;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+  padding-bottom: 0.6rem;
+  margin-bottom: 1.35rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+/* ---------- systems (flagship work) ---------- */
+
+.systems { display: grid; gap: 1.75rem; }
+@media (min-width: 44rem) { .systems { grid-template-columns: 1fr 1fr; gap: 2.25rem; } }
+
+.sys h3 { font-size: var(--step-1); font-weight: 600; }
+.sys .what { font-family: var(--f-mono); font-size: 0.68rem; color: var(--muted); margin: 0.25rem 0 0.6rem; }
+.sys p { max-width: 46ch; }
+.sys .nums {
+  margin-top: 0.7rem; font-family: var(--f-mono); font-size: 0.7rem;
+  color: var(--muted); font-variant-numeric: tabular-nums; line-height: 1.7;
+}
+.sys .nums b { color: var(--signal-ink); font-weight: 600; }
+
+/* ---------- experience ---------- */
+
+.roles { display: flex; flex-direction: column; gap: 1.9rem; }
+
+.job { break-inside: avoid; }
+
+.job-head { display: flex; flex-wrap: wrap; gap: 0.15rem 1rem; align-items: baseline; margin-bottom: 0.15rem; }
+.job-head h3 { font-size: var(--step-1); font-weight: 600; }
+.job-head .when {
+  font-family: var(--f-mono); font-size: 0.7rem; color: var(--muted);
+  margin-left: auto; font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+.job .org { font-size: 0.88rem; color: var(--muted); margin-bottom: 0.7rem; }
+
+.job ul { display: flex; flex-direction: column; gap: 0.45rem; }
+.job li { position: relative; padding-left: 1.05rem; max-width: 74ch; }
+.job li::before {
+  content: ""; position: absolute; left: 0; top: 0.62em;
+  width: 4px; height: 4px; background: var(--rule-strong);
+}
+.job li b, strong { color: var(--ink); font-weight: 600; }
+
+/* ---------- skills ---------- */
+
+.skills { display: grid; gap: 0.9rem 2.25rem; }
+@media (min-width: 40rem) { .skills { grid-template-columns: 9.5rem 1fr; } }
+
+.skills dt {
+  font-family: var(--f-mono); font-size: 0.68rem; color: var(--muted);
+  padding-top: 0.16rem;
+}
+.skills dd { max-width: 62ch; }
+
+/* ---------- education ---------- */
+
+.edu { display: flex; flex-direction: column; gap: 0.85rem; }
+.edu div { display: flex; flex-wrap: wrap; gap: 0.1rem 1rem; align-items: baseline; }
+.edu h3 { font-size: var(--step-0); font-weight: 600; }
+.edu .when { font-family: var(--f-mono); font-size: 0.7rem; color: var(--muted); margin-left: auto; font-variant-numeric: tabular-nums; }
+.edu p { flex-basis: 100%; font-size: 0.88rem; color: var(--muted); }
+
+/* ---------- callout to the case notes ---------- */
+
+.pointer {
+  margin-top: clamp(2.25rem, 5vw, 3rem);
+  padding: 1.15rem 1.25rem;
+  background: var(--surface); border: 1px solid var(--rule);
+  display: flex; flex-direction: column; gap: 0.35rem;
+}
+.pointer strong { display: block; }
+.pointer p { font-size: 0.92rem; max-width: 62ch; }
+
+/* ---------- footer ---------- */
+
+.foot {
+  margin-top: clamp(2.5rem, 6vw, 3.5rem); padding-top: 1.2rem;
+  border-top: 1px solid var(--rule);
+  font-size: 0.82rem; color: var(--muted);
+  display: flex; flex-wrap: wrap; gap: 0.4rem 1.5rem;
+}
+
+/* ---------- print: this is a CV, it has to make a clean PDF ---------- */
+
+@media print {
+  :root {
+    --bg: #fff; --surface: #fff;
+    --ink: #111; --body: #222; --muted: #555;
+    --rule: #ccc; --rule-strong: #999;
+    --signal: #123; --signal-ink: #123; --signal-weak: #fff;
+  }
+  @page { margin: 12mm 13mm 13mm; }
+  body { font-size: 9.4pt; line-height: 1.34; background: #fff; }
+  .sheet { max-width: none; padding: 0; }
+  a { color: #111; text-decoration: none; }
+  section { margin-top: 10pt; break-inside: auto; }
+  section > h2 { font-size: 7.4pt; margin-bottom: 6pt; padding-bottom: 3pt; break-after: avoid; }
+  .job, .sys, .edu div { break-inside: avoid; }
+  .roles { gap: 8.5pt; }
+  .systems { gap: 10pt; grid-template-columns: 1fr 1fr; }
+  .job ul { gap: 2.4pt; }
+  .job li { padding-left: 8pt; max-width: none; }
+  .job li::before { top: 0.55em; width: 3px; height: 3px; }
+  .job .org { margin-bottom: 3.5pt; font-size: 8.4pt; }
+  .skills { gap: 4.5pt 14pt; grid-template-columns: 7.5rem 1fr; }
+  .skills dd, .sys p, .summary { max-width: none; }
+  .summary { margin-top: 8pt; }
+  .top { padding-bottom: 8pt; }
+  .reach { font-size: 7.8pt; margin-top: 2pt; }
+  .pointer { border: 1px solid #bbb; padding: 6pt 8pt; margin-top: 10pt; break-inside: avoid; }
+  .foot { margin-top: 10pt; padding-top: 6pt; font-size: 7.8pt; }
+  .top h1 { font-size: 19pt; }
+  .job-head h3, .sys h3 { font-size: 10.5pt; }
+  .sys .nums, .sys .what { font-size: 7.6pt; }
+  .no-print { display: none !important; }
+}
