@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Terms of Service · school-sync</title>
+<meta name="description" content="Terms for school-sync, a personal single-user tool: no warranty, no service, one user.">
+<meta name="color-scheme" content="light dark">
+<meta name="robots" content="index,follow">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Martian+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body, h1, h2, h3, p, dl, dd, dt, ol, ul, figure, table { margin: 0; padding: 0; }
+  ol, ul { list-style: none; }
+  table { border-collapse: collapse; }
+
+  :root {
+    --bg:          oklch(0.985 0.002 250);
+    --surface:     oklch(1 0 0);
+    --ink:         oklch(0.22 0.021 252);
+    --body:        oklch(0.415 0.019 252);
+    --muted:       oklch(0.545 0.016 252);
+    --rule:        oklch(0.905 0.008 252);
+    --rule-strong: oklch(0.82 0.012 252);
+    --signal:      oklch(0.505 0.185 256);
+    --signal-ink:  oklch(0.42 0.17 256);
+    --signal-weak: oklch(0.955 0.028 256);
+
+    --f-sans: "Archivo", ui-sans-serif, system-ui, "Segoe UI", Roboto, sans-serif;
+    --f-mono: "Martian Mono", ui-monospace, "Cascadia Mono", Menlo, Consolas, monospace;
+
+    --step--1: clamp(0.78rem, 0.76rem + 0.10vw, 0.84rem);
+    --step-0:  clamp(1rem, 0.97rem + 0.14vw, 1.08rem);
+    --step-1:  clamp(1.25rem, 1.18rem + 0.34vw, 1.45rem);
+    --step-2:  clamp(1.56rem, 1.42rem + 0.70vw, 1.95rem);
+    --step-3:  clamp(1.95rem, 1.68rem + 1.35vw, 2.65rem);
+    --step-4:  clamp(2.44rem, 1.92rem + 2.60vw, 3.90rem);
+
+    --gutter: clamp(1.15rem, 4vw, 2.5rem);
+    --measure: 66ch;
+    --ease: cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg:          oklch(0.188 0.017 255);
+      --surface:     oklch(0.232 0.019 255);
+      --ink:         oklch(0.955 0.006 255);
+      --body:        oklch(0.805 0.012 255);
+      --muted:       oklch(0.655 0.015 255);
+      --rule:        oklch(0.318 0.019 255);
+      --rule-strong: oklch(0.40 0.022 255);
+      --signal:      oklch(0.755 0.145 255);
+      --signal-ink:  oklch(0.80 0.14 255);
+      --signal-weak: oklch(0.285 0.055 255);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg:          oklch(0.188 0.017 255);
+    --surface:     oklch(0.232 0.019 255);
+    --ink:         oklch(0.955 0.006 255);
+    --body:        oklch(0.805 0.012 255);
+    --muted:       oklch(0.655 0.015 255);
+    --rule:        oklch(0.318 0.019 255);
+    --rule-strong: oklch(0.40 0.022 255);
+    --signal:      oklch(0.755 0.145 255);
+    --signal-ink:  oklch(0.80 0.14 255);
+    --signal-weak: oklch(0.285 0.055 255);
+  }
+
+  :root[data-theme="light"] {
+    --bg:          oklch(0.985 0.002 250);
+    --surface:     oklch(1 0 0);
+    --ink:         oklch(0.22 0.021 252);
+    --body:        oklch(0.415 0.019 252);
+    --muted:       oklch(0.545 0.016 252);
+    --rule:        oklch(0.905 0.008 252);
+    --rule-strong: oklch(0.82 0.012 252);
+    --signal:      oklch(0.505 0.185 256);
+    --signal-ink:  oklch(0.42 0.17 256);
+    --signal-weak: oklch(0.955 0.028 256);
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--body);
+    font-family: var(--f-sans);
+    font-size: var(--step-0);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  .shell {
+    max-width: 60rem;
+    margin-inline: auto;
+    padding: clamp(2.5rem, 7vw, 5rem) var(--gutter) 4rem;
+  }
+
+  a { color: var(--signal-ink); text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+  a:hover { color: var(--ink); }
+  a:focus-visible { outline: 2px solid var(--signal); outline-offset: 3px; border-radius: 1px; }
+
+  h1, h2, h3 { color: var(--ink); font-weight: 600; line-height: 1.1; letter-spacing: -0.022em; text-wrap: balance; }
+  p { text-wrap: pretty; }
+
+  .lede { max-width: var(--measure); }
+
+  /* ============ masthead ============ */
+
+  .masthead { display: flex; flex-direction: column; gap: 1.6rem; }
+
+  .byline {
+    font-family: var(--f-mono);
+    font-size: var(--step--1);
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--signal-ink);
+  }
+
+  .masthead h1 { font-size: var(--step-4); font-weight: 700; letter-spacing: -0.035em; max-width: 20ch; }
+
+  .masthead .lede { font-size: var(--step-1); line-height: 1.45; color: var(--body); letter-spacing: -0.008em; }
+
+  .contact {
+    display: flex; flex-wrap: wrap; gap: 0.4rem 1.6rem;
+    font-family: var(--f-mono); font-size: var(--step--1); color: var(--muted);
+    padding-top: 1.4rem; border-top: 1px solid var(--rule);
+  }
+
+  /* ============ ledger ============ */
+
+  .ledger { margin-top: clamp(3.5rem, 8vw, 5.5rem); }
+
+  .ledger > h2 { font-size: var(--step-2); margin-bottom: 0.5rem; }
+  .ledger > .lede { margin-bottom: 2rem; color: var(--muted); }
+
+  .ledger-table { width: 100%; }
+
+  .ledger-table thead th {
+    font-family: var(--f-mono);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--muted);
+    text-align: left;
+    padding-bottom: 0.7rem;
+    border-bottom: 1px solid var(--rule-strong);
+  }
+
+  .ledger-table td { padding: 1.05rem 1.1rem 1.05rem 0; border-bottom: 1px solid var(--rule); vertical-align: baseline; }
+  .ledger-table td:last-child { padding-right: 0; }
+  .ledger-table tbody tr:last-child td { border-bottom: 0; }
+
+  .ledger-table a { color: var(--ink); text-decoration: none; font-weight: 500; }
+  .ledger-table a:hover { color: var(--signal-ink); text-decoration: underline; }
+
+  .claimed, .actual {
+    font-family: var(--f-mono);
+    font-size: 0.74rem;
+    line-height: 1.45;
+    font-variant-numeric: tabular-nums;
+  }
+  .claimed { color: var(--muted); }
+  .actual  { color: var(--signal-ink); font-weight: 600; }
+
+  /* mobile: the table becomes stacked records */
+  @media (max-width: 46rem) {
+    .ledger-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+    .ledger-table tr { display: grid; gap: 0.35rem; padding: 1.15rem 0; border-bottom: 1px solid var(--rule); }
+    .ledger-table tbody tr:last-child { border-bottom: 0; }
+    .ledger-table td { display: block; padding: 0; border: 0; }
+    .claimed::before, .actual::before {
+      font-family: var(--f-mono); font-size: 0.66rem; color: var(--muted);
+      display: block; margin-bottom: 0.1rem;
+    }
+    .claimed::before { content: "reported"; }
+    .actual::before  { content: "true"; }
+  }
+
+  /* ============ systems ============ */
+
+  .systems { margin-top: clamp(3.5rem, 8vw, 5.5rem); display: grid; gap: 2.25rem; }
+  @media (min-width: 46rem) { .systems { grid-template-columns: 1.05fr 1fr; gap: 3rem; } }
+
+  .systems h2 { font-size: var(--step-2); grid-column: 1 / -1; margin-bottom: -0.75rem; }
+
+  .system h3 { font-size: var(--step-1); margin-bottom: 0.5rem; }
+  .system p { max-width: 46ch; }
+  .system .runs {
+    margin-top: 0.9rem; font-family: var(--f-mono); font-size: 0.72rem;
+    color: var(--muted); font-variant-numeric: tabular-nums; line-height: 1.7;
+  }
+  .system .runs b { color: var(--ink); font-weight: 600; }
+
+  /* ============ cases ============ */
+
+  .cases { margin-top: clamp(4rem, 9vw, 6.5rem); display: flex; flex-direction: column; gap: clamp(3.25rem, 7vw, 4.75rem); }
+
+  .case { scroll-margin-top: 2rem; }
+
+  .case-head { display: flex; gap: 1rem; align-items: baseline; margin-bottom: 1.1rem; }
+
+  .case-n {
+    font-family: var(--f-mono); font-size: 0.72rem; font-weight: 600;
+    color: var(--signal-ink); flex: none; padding-top: 0.35rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .case-head h3 { font-size: var(--step-2); }
+  .case-head .class { display: block; font-family: var(--f-mono); font-size: 0.7rem; font-weight: 400; color: var(--muted); letter-spacing: 0; margin-top: 0.45rem; }
+
+  .case-body { display: flex; flex-direction: column; gap: 1rem; max-width: var(--measure); }
+  @media (min-width: 46rem) { .case-body { margin-left: 3.1rem; } }
+
+  .case-body p { }
+
+  strong { color: var(--ink); font-weight: 600; }
+
+  code {
+    font-family: var(--f-mono); font-size: 0.82em;
+    background: var(--signal-weak); color: var(--signal-ink);
+    padding: 0.1em 0.3em; word-break: break-word;
+  }
+
+  /* causal chain: a real sequence, so it is numbered */
+  .chain { display: flex; flex-direction: column; gap: 0; margin: 0.35rem 0; border-left: 1px solid var(--rule-strong); }
+  .chain li { position: relative; padding: 0.62rem 0 0.62rem 1.5rem; }
+  .chain li::before {
+    content: ""; position: absolute; left: -3px; top: 1.15rem;
+    width: 5px; height: 5px; background: var(--rule-strong);
+  }
+  .chain li:last-child::before { background: var(--signal); }
+  .chain li:last-child { color: var(--ink); font-weight: 500; }
+
+  /* the two-state figure */
+  .versus {
+    display: grid; gap: 0.9rem 2rem; margin: 0.6rem 0;
+    padding: 1.15rem 1.25rem; background: var(--surface); border: 1px solid var(--rule);
+  }
+  @media (min-width: 34rem) { .versus { grid-template-columns: 1fr 1fr; } }
+
+  .versus div { display: flex; flex-direction: column; gap: 0.3rem; }
+  .versus dt, .versus .k {
+    font-family: var(--f-mono); font-size: 0.66rem; color: var(--muted);
+  }
+  .versus .v { font-family: var(--f-mono); font-size: 0.95rem; font-weight: 600; line-height: 1.35; font-variant-numeric: tabular-nums; }
+  .versus .said .v { color: var(--muted); }
+  .versus .was .v  { color: var(--signal-ink); }
+
+  .rule-out {
+    padding-left: 1.15rem; border-left: 2px solid var(--signal);
+    color: var(--ink);
+  }
+
+  /* ============ practice ============ */
+
+  .practice { margin-top: clamp(4rem, 9vw, 6rem); }
+  .practice h2 { font-size: var(--step-2); margin-bottom: 0.5rem; }
+  .practice > .lede { color: var(--muted); margin-bottom: 2rem; }
+
+  .practice-list { display: grid; gap: 1.6rem 2.5rem; }
+  @media (min-width: 46rem) { .practice-list { grid-template-columns: 1fr 1fr; } }
+
+  .practice-list h3 { font-size: var(--step-0); font-weight: 600; letter-spacing: -0.01em; margin-bottom: 0.2rem; }
+  .practice-list p { font-size: 0.95rem; max-width: 42ch; }
+
+  /* ============ footer ============ */
+
+  .foot {
+    margin-top: clamp(4rem, 9vw, 6rem); padding-top: 1.4rem; border-top: 1px solid var(--rule);
+    display: flex; flex-direction: column; gap: 0.6rem;
+    font-size: 0.88rem; color: var(--muted); max-width: var(--measure);
+  }
+  .foot .who { font-family: var(--f-mono); font-size: var(--step--1); color: var(--body); }
+
+  /* ============ motion ============ */
+  /* Content is visible by default. Motion only enhances, so a headless
+     render or an unsupported browser still ships the full page. */
+
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      /* Transform only, never opacity. If the timeline never advances
+         (headless render, background tab), the worst case is an element
+         sitting 12px low, not an invisible section. */
+      .case, .practice-list > div, .system {
+        animation: settle linear both;
+        animation-timeline: view();
+        animation-range: entry 0% cover 18%;
+      }
+    }
+    .masthead > * { animation: rise 620ms var(--ease) both; }
+    .masthead > *:nth-child(2) { animation-delay: 60ms; }
+    .masthead > *:nth-child(3) { animation-delay: 120ms; }
+    .masthead > *:nth-child(4) { animation-delay: 180ms; }
+  }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  @keyframes settle {
+    from { transform: translateY(12px); }
+    to   { transform: none; }
+  }
+</style>
+<style>
+  .prose { max-width: var(--measure); display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2.75rem; }
+  .prose h2 { font-size: var(--step-1); margin-top: 1.25rem; }
+  .prose p { color: var(--body); }
+  .prose ul { display: flex; flex-direction: column; gap: 0.55rem; }
+  .prose li { position: relative; padding-left: 1.15rem; color: var(--body); }
+  .prose li::before { content: ""; position: absolute; left: 0; top: 0.62em;
+    width: 5px; height: 5px; border-radius: 50%; background: var(--rule-strong); }
+  .prose strong { color: var(--ink); font-weight: 600; }
+  .prose code { font-family: var(--f-mono); font-size: 0.86em; color: var(--signal-ink); }
+  .updated { font-family: var(--f-mono); font-size: var(--step--1); color: var(--muted);
+    letter-spacing: -0.02em; }
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <header class="masthead">
+    <p class="byline">Ralph Alejandrino</p>
+    <h1>Terms of Service</h1>
+    <p class="lede">For <strong>school-sync</strong>, a personal single-user tool. The short version: it is mine, it is provided as-is, and there is no service being offered to anyone.</p>
+    <p class="contact">
+      <span>Baguio, Philippines · UTC+8</span>
+      <a href="/">Home</a>
+      <a href="mailto:ralphmiguelalejandrino@gmail.com">ralphmiguelalejandrino@gmail.com</a>
+    </p>
+  </header>
+
+  <div class="prose">
+    <p><strong>school-sync</strong> is a personal tool I wrote for my own use. These terms exist
+      because Google requires a published terms-of-service page before an OAuth application may
+      leave testing status.</p>
+
+    <h2>Who may use it</h2>
+    <p>Only me. It is not offered, sold, licensed or made available to anyone else, and it has no
+      sign-up, no accounts and no users other than its author.</p>
+
+    <h2>No warranty</h2>
+    <p>The tool is provided as-is, with no warranty of any kind. It may be wrong, it may miss a
+      deadline, and it may stop working without notice. I rely on my own judgement for anything
+      that matters, and so should anyone reading this.</p>
+
+    <h2>Availability</h2>
+    <p>There is no service to be available. The tool runs on one computer, when I run it, and may
+      be changed or deleted at any time.</p>
+
+    <h2>Data</h2>
+    <p>How it handles data is described in the <a href="/privacy/">privacy policy</a>. In short:
+      it reads only my own Google account, stores what it finds only on my own machine, and sends
+      nothing anywhere.</p>
+
+    <h2>Contact</h2>
+    <p><a href="mailto:ralphmiguelalejandrino@gmail.com">ralphmiguelalejandrino@gmail.com</a></p>
+    <p class="updated">Last updated 6 September 2026.</p>
+  </div>
+
+  <footer class="foot">
+    <p class="who">
+      Ralph Alejandrino · Baguio, Philippines ·
+      <a href="mailto:ralphmiguelalejandrino@gmail.com">ralphmiguelalejandrino@gmail.com</a>
+    </p>
+  </footer>
+
+</div>
+</body>
+</html>
