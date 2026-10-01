@@ -30,15 +30,15 @@
 
   <p class="summary">
     I build and operate production software for small businesses, and I am usually the one who
-    deploys it, watches it break, and fixes it. Currently I run a multi-tenant CRM in daily use
-    across 2,800 customer records, backed by 2,200+ automated tests, and a point-of-sale system
-    live on a client's register. Before writing software for distribution and retail operations, I managed
+    deploys it, watches it break, and fixes it. I built a multi-tenant CRM tested against
+    a distributor's 2,800 real customer records, backed by 2,200+ automated tests, and I run a
+    point-of-sale system live on a client's register. Before writing software for distribution and retail operations, I managed
     one. I work AI-assisted and treat generated output as draft work: verified against the code,
     proven with tests, shipped in small reviewable pieces.
   </p>
 
   <section>
-    <h2>Systems in production</h2>
+    <h2>Systems</h2>
     <div class="systems">
 
       <article class="sys">
@@ -52,7 +52,8 @@
         </p>
         <p class="nums">
           <b>2,800</b> customer records · <b>139,000</b> messages<br>
-          In daily use by the business it was built for
+          Tested on the client's real data<br>
+          Source: <a href="https://github.com/ralphalejandrino/ProjectCRM">github.com/ralphalejandrino/ProjectCRM</a>
         </p>
       </article>
 
@@ -66,7 +67,8 @@
         </p>
         <p class="nums">
           <b>670+</b> automated tests · <b>0</b> unrecorded deploys<br>
-          Live on client hardware
+          Live on client hardware<br>
+          Source: <a href="https://github.com/ralphalejandrino/ProjectPOS">github.com/ralphalejandrino/ProjectPOS</a>
         </p>
       </article>
 
@@ -84,7 +86,7 @@
         </div>
         <p class="org">Self-directed, with paying clients</p>
         <ul>
-          <li>Designed, built and shipped <b>two production systems end to end</b>: a multi-tenant CRM with delivery tracking, and a point-of-sale with inventory and cost-of-goods reporting. Both are in daily use by paying clients.</li>
+          <li>Designed, built and shipped <b>two production systems end to end</b>: a multi-tenant CRM with delivery tracking, and a point-of-sale with inventory and cost-of-goods reporting. The point-of-sale runs a paying client's register; the CRM was built for, and tested on the real data of, an LPG distributor.</li>
           <li>Integrated a <b>language model into live order intake</b> behind a swappable provider interface, parsing real customer messages into structured orders, with API failover and a settings-editable prompt so business rules change without a rebuild.</li>
           <li>Own the full delivery path: migrations, packaging a Django app into a <b>frozen Windows binary</b>, hash-verified releases, snapshot-first deploys with a recorded rollback target, and independent verification of the live artifacts over SSH.</li>
           <li>Run and diagnose the systems in production. Traced duplicate customer orders to a database lock during a launch-time backup, and fixed it with an idempotency key arbitrated by a database constraint.</li>
